@@ -1,0 +1,32 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Fântâni</title>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js"></script>
+<style>
+  html, body, #map { margin: 0; height: 100%; }
+</style>
+
+<body>
+
+<div id="map"></div>
+
+<script>
+var points = {{ points_json|safe }};
+
+var map = L.map('map');
+map.fitBounds([[44.40, 26.03], [44.46, 26.16]]);
+map.addLayer(L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'}));
+
+var points_layer = L.geoJson(points);
+var markers = new L.MarkerClusterGroup();
+markers.addLayer(points_layer);
+map.addLayer(markers);
+//map.addLayer(points_layer);
+
+</script>
