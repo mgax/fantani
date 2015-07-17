@@ -37,13 +37,15 @@ map.addLayer(L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}
 var form = document.querySelector('#form').innerHTML;
 document.querySelector('#form').remove();
 
+var point = function(latlng) {
+  return 'SRID=4326;POINT (' + latlng.lng + ' ' + latlng.lat + ')';
+}
+
 map.on('click', function(e) {
   var popup = L.popup()
       .setLatLng(e.latlng)
       .setContent(form)
       .openOn(map);
-  var dec4 = d3.format('.4f');
-  var pos = ''+[dec4(e.latlng.lng), dec4(e.latlng.lat)];
-  document.querySelector('[name=pos]').value = pos;;
+  document.querySelector('[name=pos]').value = point(e.latlng);
 });
 </script>

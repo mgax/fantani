@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponseBadRequest
+from .forms import EntryForm
 
 
 def index(request):
@@ -6,4 +8,10 @@ def index(request):
 
 
 def submit(request):
-    return render(request, 'thanks.html')
+    if request.method == 'POST':
+        entry_form = EntryForm(request.POST)
+        if entry_form.is_valid():
+            entry_form.save()
+            return render(request, 'thanks.html')
+
+    return HttpResponseBadRequest()
