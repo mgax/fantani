@@ -17,7 +17,8 @@
 <div id="map"></div>
 
 <div id="form" style="display: none">
-  <form>
+  <form method="post" action="{% url 'submit' %}">
+    {% csrf_token %}
     <div class="form-group">
       <label for="frm-name">Nume</label>
       <input class="form-control" id="frm-name" name="name" placeholder="Nume">
