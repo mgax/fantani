@@ -24,7 +24,7 @@
       <label for="frm-name">Nume</label>
       <input class="form-control" id="frm-name" name="name" placeholder="Nume">
     </div>
-    <input type="hidden" name="lnglat">
+    <input type="hidden" name="pos">
     <button type="submit" class="btn btn-default">Trimite</button>
   </form>
 </div>
@@ -43,7 +43,7 @@ map.on('click', function(e) {
       .setContent(form)
       .openOn(map);
   var dec4 = d3.format('.4f');
-  var lnglat = ''+[dec4(e.latlng.lng), dec4(e.latlng.lat)];
-  document.querySelector('[name=lnglat]').value = lnglat;;
+  var pos = ''+[dec4(e.latlng.lng), dec4(e.latlng.lat)];
+  document.querySelector('[name=pos]').value = pos;;
 });
 </script>
