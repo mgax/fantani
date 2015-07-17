@@ -1,17 +1,41 @@
 <!doctype html>
 <meta charset="utf-8">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 <style>
   html, body, #map { margin: 0; height: 100%; }
+  form {
+    width: 200px;
+  }
 </style>
 
 <body>
 
 <div id="map"></div>
 
+<div id="form" style="display: none">
+  <form>
+    <div class="form-group">
+      <label for="frm-name">Nume</label>
+      <input class="form-control" id="frm-name" name="name" placeholder="Nume">
+    </div>
+    <button type="submit" class="btn btn-default">Trimite</button>
+  </form>
+</div>
+
 <script>
 var map = L.map('map');
 map.fitBounds([[44.40, 26.03], [44.46, 26.16]]);
 map.addLayer(L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'}));
+
+var form = document.querySelector('#form').innerHTML;
+
+map.on('click', function(e) {
+  var popup = L.popup()
+      .setLatLng(e.latlng)
+      .setContent(form)
+      .openOn(map);
+});
 </script>
