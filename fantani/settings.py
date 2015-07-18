@@ -14,6 +14,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.gis',
     'campaign',
+    'whitenoise',
 )
 
 MIDDLEWARE_CLASSES = (
