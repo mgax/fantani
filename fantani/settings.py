@@ -3,8 +3,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'secret'
-DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
@@ -67,3 +65,5 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+from local_settings import *
