@@ -71,7 +71,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
+    'disable_existing_loggers': True,
     'handlers': {
         'stderr': {
             'level': 'WARNING',
@@ -80,10 +80,13 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['stderr'],
             'level': 'WARNING',
             'propagate': True,
         },
+    },
+    'root': {
+        'handlers': ['stderr'],
+        'level': 'WARNING',
     },
 }
 
