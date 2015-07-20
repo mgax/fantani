@@ -72,10 +72,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
+    'formatters': {
+        'logfile': {
+            'format': '%(asctime)s %(levelname)s %(name)s %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S',
+        },
+    },
     'handlers': {
         'stderr': {
             'level': 'WARNING',
             'class': 'logging.StreamHandler',
+            'formatter': 'logfile',
         },
     },
     'loggers': {
